@@ -71,11 +71,37 @@ public class DemoDataBase {
 								e.printStackTrace();
 							}
 							break;
-							
-							
+							case '3':
+							try(Connection connection = DriverManager.getConnection(connectionUrl);
+									Statement stmt = connection.createStatement())
+							{
+								System.out.println("Enter an Id you want to delete: ");
+								var ID = sc.nextLine();
+								String delquery = "delete from student1 where student-id="+ID;
+								stmt.executeUpdate(delquery);
+								System.out.println("Data Deleted Succesfully!");
+							}
+							catch(SQLException e)
+							{
+								e.printStackTrace();
+							}
+							break;
+							default:
+								System.out.println("You have Selected Wrong Input!!");
+								break;
+					}
+					System.out.println("Enter Y to continue: else press any other key to exit the program ");
+					continuedata =sc.nextLine();
+					if(continuedata.equals("y"))
+					{
+						System.out.println("you have Selected to Continue");
+						
 					}
 					
-				}while(true);
+				}while(continuedata.equals("Y"));
+						System.out.println("You Have Exicuted the Program!!!");
+
+		
 	}
 
 }
