@@ -12,7 +12,7 @@ import java.sql.PrepareStatement;
 public class DemoDataBase {
 	public void CurdOperations()
 	{
-		String continedata="";
+		String continedata=" ";
 		System.out.println("welcome");
 		String connectionUrl="jdbc:mysql://localhost:3306?user=root&password=12345";
 				do
@@ -23,7 +23,7 @@ public class DemoDataBase {
 					var DataInput=sc.nextLine();
 					switch (DataInput)
 					{
-						case '1':
+						case "1":
 							ResultSet resultSet =null;
 							try(Connection connection =DriverManager.getConnection(connectionUrl);
 									Statement statement = connection.createStatement();)
@@ -33,7 +33,7 @@ public class DemoDataBase {
 								resultSet =statement.executeQuery(selectSql);
 								while(resultSet.next())
 								{
-									var str =String.format("%s %s,",resultSet.getString(1),resultSet.getString(2));
+									var str =String.format("%s %s ",resultSet.getString(1),resultSet.getString(2));
 								}
 							}
 							catch(SQLException e)
@@ -42,7 +42,7 @@ public class DemoDataBase {
 							}
 							break;
 							
-						case '2':
+						case "2":
 							try(Connection connection = DriverManager.getConnection(connectionUrl))
 							{
 								System.out.println("enter student id:");
@@ -58,10 +58,10 @@ public class DemoDataBase {
 								var smarks=sc.nextInt();
 								System.out.println(smarks);
 								PreparedStatement stmt =connection.prepareStatement("insert into student1 values");
-								stmt.setString(1, sid);
+								stmt.setInt(1, sid);
 								stmt.setString(2, sname);
 								stmt.setString(3, saddress);
-								stmt.setString(4, smarks);
+								stmt.setInt(4, smarks);
 								stmt.executeUpdate();
 								
 								System.out.println("Data Entered successfully! ");
@@ -71,7 +71,7 @@ public class DemoDataBase {
 								e.printStackTrace();
 							}
 							break;
-							case '3':
+							case "3":
 							try(Connection connection = DriverManager.getConnection(connectionUrl);
 									Statement stmt = connection.createStatement())
 							{
@@ -98,7 +98,7 @@ public class DemoDataBase {
 						
 					}
 					
-				}while(continuedata.equals("Y"));
+				}while(continuedata.equals("y"));
 						System.out.println("You Have Exicuted the Program!!!");
 
 		
